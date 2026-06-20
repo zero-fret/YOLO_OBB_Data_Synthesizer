@@ -1,4 +1,4 @@
-# Synthetic Dataset Generator FOR YOLO-OBB Detection
+# Synthetic Dataset Generator For YOLO-OBB Detection
 ## Overview
 This program generates synthetic training and validation datasets for OBB (Oriented Bounding Box) detection with various types of interference patterns. It creates images with labeled real targets and unlabeled distractors to simulate real-world detection challenges.
 This repository is released under the `GNU GPLv3` license.
