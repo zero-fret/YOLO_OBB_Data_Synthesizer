@@ -1,0 +1,14 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# Example of an OBB dataset configuration YAML
+task: obb
+# Dataset path
+crop_fraction: 0
+img_size: 640
+path: ./data0 
+train: train/images  
+val: val/images 
+test: test/images 
+# Classes
+names:
+  0: BLUE
+  1: RED
