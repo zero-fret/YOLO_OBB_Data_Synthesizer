@@ -14,11 +14,11 @@ TRAIN_NUM = 800          # Number of training images to generate
 VAL_NUM = 200             # Number of validation images to generate
 NC = 1                    # Number of object classes
 MIN_SIZE = 32             # Minimum target size in pixels
-MAX_SIZE = 200            # Maximum target size in pixels
+MAX_SIZE = 128            # Maximum target size in pixels
 
 # Image dimensions
-IMG_SIZE = 1280           # Base image size (width and height)
-BORDER = 160              # Margin from image borders for target placement
+IMG_SIZE = 640           # Base image size (width and height)
+BORDER = 80              # Margin from image borders for target placement
 
 # ==================== Interference Parameters ====================
 # 1. FALSE TARGETS: Cropped and rotated real targets (no labels)
