@@ -23,7 +23,7 @@ Before running the program, create the following directories:
 Note: 
 1. For multi-class detection, create subdirectories 0, 1, 2, etc. under both train and val folders.
 2. Target images MUST be in **RGBA** format with **transparancy channel**.
-3. `rembg.py` in the `utils` folder can remove background and create **transparent** PNG files.
+3. `rembg.py` in the `toolkit` folder can remove background and create **transparent** PNG files.
 
 Output Directory Structure
 The program creates a ./data0/ directory with the following structure:
