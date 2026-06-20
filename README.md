@@ -110,7 +110,7 @@ The index numbers correspond between images and labels.
 7. Apply downscaling (if selected)
 8. Save image and label files
 
-## OUTPUT EXAMPLES
+## Output
 The generated dataset is compatible with:
 - YOLO-based object detection frameworks
 - Any detector that uses polygon bounding boxes (OBB - Oriented Bounding Box)
