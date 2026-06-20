@@ -1,8 +1,8 @@
-# SYNTHETIC DATASET GENERATOR FOR ORIENTED-BOUNDING-BOX DETECTION
-## OVERVIEW
+# Synthetic Dataset Generator FOR YOLO-OBB Detection
+## Overview
 This program generates synthetic training and validation datasets for OBB (Oriented Bounding Box) detection with various types of interference patterns. It creates images with labeled real targets and unlabeled distractors to simulate real-world detection challenges.
 This repository is released under the `GNU GPLv3` license.
-## KEY FEATURES
+## Key Features
 1. Generates labeled targets (real objects) placed in four quadrants per image
 2. Adds unlabeled false targets (cropped and rotated fragments of real objects)
 3. Draws random geometric interruptions (lines, polygons) as visual noise
@@ -10,23 +10,24 @@ This repository is released under the `GNU GPLv3` license.
 5. Applies brightness variations to simulate lighting changes
 6. Adds Gaussian blur for motion blur / out-of-focus simulation
 7. Optional downscaling for scale variation
+8. Released with simple Ultralytics YOLO training scripts
 
-## DIRECTORY STRUCTURE REQUIRED
+## Directory Structure Required
 Before running the program, create the following directories:
-
+```
 ./background/         - Contains background images (PNG, JPG, JPEG). You can use COCO and DOTA dataset images
 ./target/train/0/     - Training target images (class 0)
 ./target/val/0/       - Validation target images (class 0)
 ./false_images/       - External images for false positives (optional)
-
+```
 Note: 
 1. For multi-class detection, create subdirectories 0, 1, 2, etc. under both train and val folders.
 2. Target images MUST be in **RGBA** format with **transparancy channel**.
-3. `rembg.py` in the utils folder can remove background and create **transparent** PNG files.
+3. `rembg.py` in the `utils` folder can remove background and create **transparent** PNG files.
 
-OUTPUT DIRECTORY STRUCTURE
+Output Directory Structure
 The program creates a ./data0/ directory with the following structure:
-
+```
 ./data0/
    ├── train/
    │   ├── images/     - Generated training images (1.jpg, 2.jpg, ...)
@@ -34,8 +35,8 @@ The program creates a ./data0/ directory with the following structure:
    └── val/
        ├── images/     - Generated validation images
        └── labels/     - Corresponding YOLO format labels
-
-## LABEL FORMAT
+```
+## Label Format
 The program uses YOLO polygon format:
 class x1 y1 x2 y2 x3 y3 x4 y4
 
@@ -44,9 +45,9 @@ Where:
 - x1 y1 ... x4 y4: Four corner coordinates of rotated bounding box
 - All coordinates are normalized to [0, 1] range (relative to image size)
 
-## CONFIGURABLE PARAMETERS
+## Configurable Parameters
 Edit the following parameters at the top of the script:
-
+```
 DATASET SIZE:
   TRAIN_NUM = 800       - Number of training images
   VAL_NUM = 200         - Number of validation images
@@ -75,34 +76,31 @@ INTERRUPTION DRAWING:
   LINE_WIDTH_RANGE = (2, 8)      - Line thickness range (pixels)
   POLYGON_SIDES_RANGE = (2, 16)  - Number of polygon vertices range
 
-### RANDOM SEED
-----------
-The program uses a fixed random seed (1337) for reproducibility.
-To change, modify: random.seed(1337)
+random.seed(1337)             - Random seed
 
-## REQUIREMENTS
+```
+## Run The Program
+### Requirements
 ------------
 Python packages:
   - Pillow (PIL)
   - numpy
 
 Install with:
-  pip install Pillow numpy
+  `pip install Pillow numpy`
 
-## RUNNING THE PROGRAM
--------------------
+### RUNNING THE PROGRAM
 1. Ensure all required directories exist with appropriate images
 2. Run the script:
    python dataset_generator_obb.py
 3. Monitor progress in console output
 
-## FILE NAMING CONVENTION
-----------------------
+### File Naming
 Images are saved as 1.jpg, 2.jpg, etc.
 Labels are saved as 1.txt, 2.txt, etc.
 The index numbers correspond between images and labels.
 
-## INTERFERENCE PROCESSING ORDER
+### Interference Processing Order
 1. Load background image
 2. Draw geometric interruptions (lines, polygons)
 3. Add false targets (cropped real objects)
@@ -112,17 +110,9 @@ The index numbers correspond between images and labels.
 7. Apply downscaling (if selected)
 8. Save image and label files
 
-
-## TROUBLESHOOTING
-- "No such file or directory" errors: Create required directories
-- "No images found" warnings: Ensure images exist in source directories
-- Memory issues: Reduce background cache limit (currently 400 images)
-- Slow generation: Reduce IMG_SIZE or number of interference items
-
 ## OUTPUT EXAMPLES
 The generated dataset is compatible with:
 - YOLO-based object detection frameworks
 - Any detector that uses polygon bounding boxes (OBB - Oriented Bounding Box)
 - Training pipelines that handle rotated objects
 
-================================================================================
