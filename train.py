@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # Load model
     script_dir = os.path.dirname(os.path.abspath(__file__))
     os.chdir(script_dir)
-    model = YOLO('yolo26n-obb.pt')
+    model = YOLO('yolo11n-obb.pt')
     print(f"Model: {type(model.model)}")
     print(f"Parameters: {sum(p.numel() for p in model.model.parameters())}")
     
